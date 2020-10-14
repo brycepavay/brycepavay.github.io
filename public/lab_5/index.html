@@ -1,0 +1,103 @@
+<<<<<<< HEAD
+h 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title> Bryce Pavay's Lab 4 </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <h1> Bryce Pavay's lab 4 </h1>
+
+
+            <form action="/api" method="post">
+                <ul class="flex-outer">
+                    <li>
+                        <label for="fname"> First Name </label>
+                        <input type="text" id="fname" name="fname" maxlength="140">
+                    </li>
+                    <li>
+                        <label for="lname"> Last Name </label>
+                        <input type="text" id="lname" name="lname" maxlength="140">
+                    </li>
+                    <li>
+                        <label for="email"> Email </label>
+                        <input type="email" id="email" name="email">
+                    </li>
+                    <li>
+                        <label for="phone"> Phone </label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    </li>
+                    <li>
+                        <label for="message"> Text Field </label>
+                        <textarea id="message" name="message" rows="5"
+                            cols="33"> This is some default message text.</textarea>
+                    </li>
+                    <li>
+                        <p class = "checkbox-list-label"> Age</p>
+                        <ul class="flex-inner">
+
+                            <li>
+                                <label for="age1" class="checkbox-list-label"> 18-35 </label>
+                                <input type="checkbox" id="age1" name="age1">
+                            </li>
+                            <li>
+                                <label for="age2" class="checkbox-list-label"> 35-50 </label>
+                                <input type="checkbox" id="age2" name="age2">
+                            </li>
+                            <li>
+                                <label for="age3" class="checkbox-list-label"> 50-65 </label>
+                                <input type="checkbox" id="age3" name="age3">
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="submit" id="button" name="Button"> Submit Form </button>
+                        <button type="button" id="button2"  name="Button2" onclick="testFunction()">
+                            Activate</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <script>
+        function testFunction() {
+            fetch('/api')
+                .then((response) => response.text())
+                .then((response) => {
+
+                const header = document.querySelector("h1")
+                    header.innerHTML = response;
+
+                const title = document.querySelector("title")
+                    title.innerHTML = response;
+
+                const backgroundcolor = document.querySelector("body").style.cssText = "background-color: #8FBC8F"
+
+                const label1 = document.querySelector(".checkbox-list-label")
+                label1.innerHTML = "Fruits"
+
+                const labels = document.querySelectorAll(".flex-inner li label")
+                const fruits = ["Apple", "Orange", "Banana"]
+                labels.forEach((el,i)=>{
+                    const text = el.innerText;
+                    el.innerText = fruits[i]
+                }) 
+
+            })
+                const margin = document.querySelector(".flex-outer").style.margin = "0 auto";
+        }
+    
+
+
+    </script>
+</body>
+
+</html>
+>>>>>>> master
