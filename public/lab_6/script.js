@@ -40,18 +40,18 @@ document.body.addEventListener('submit', async (e) => {
         document.querySelector('.flex-inner').remove();
       }
 
-      const newArr = range(10);
-      const newArr2 = newArr.map(() => {
+      const countCountries = range(10);
+      const countriesMap = countCountries.map(() => {
         const number = getRandomIntInclusive(0, 243);
         return fromServer[number];
       });
 
-      const reverseList = newArr2.sort((a,b) => sortFunction(b, a, 'name'));
+      const descendlist = countriesMap.sort((a,b) => sortFunction(b, a, 'name'));
       const ol = document.createElement('ol');
       ol.className = 'flex-inner';
       $('form').prepend(ol);
 
-      reverseList.forEach((el, i) => {
+      descendlist.forEach((el, i) => {
         const li = document.createElement('li');
         $(li).append(`<input type = "checkbox" value = ${el.code} id = ${el.code} />`);
         $(li).append(`<label for = ${el.code}> ${el.name} </label>`);
