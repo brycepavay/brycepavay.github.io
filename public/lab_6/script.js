@@ -33,6 +33,13 @@ document.body.addEventListener('submit', async (e) => {
       // console.log(fromServer)
       // if document.querySelector(('.flex-inner')) {
       //   document.querySelector('.flex-inner'), remove();
+
+
+      const newArr = range(10);
+      const newArr2 = newArr.map() => {
+        const number = getRandomIntInclusive(0, 243);
+        return  fromServer(number);
+      }
       }
 
 
