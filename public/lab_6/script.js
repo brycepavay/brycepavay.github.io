@@ -38,7 +38,7 @@ document.body.addEventListener('submit', async (e) => {
       const newArr = range(10);
       const newArr2 = newArr.map(() => {
         const number = getRandomIntInclusive(0, 243);
-        return  fromServer(number);
+        return fromServer(number);
       });
 
       const reverseList = newArr2.sort((a,b) => sortByKey(a, b, 'name'));
@@ -48,9 +48,9 @@ document.body.addEventListener('submit', async (e) => {
 
       reverseList.forEach((el, i) => {
         const li = document.createElement('li');
-        $(li).append(' <input type = "checkbox" value = $(el.code) id =$(el.code) />');
-        $(li).append('<label for = $(el.code)> $(el.name) </label>');
-        $(li).append(li);
+        $(li).append(`<input type = "checkbox" value = $(el.code) id =$(el.code) />`);
+        $(li).append(`<label for = $(el.code)> $(el.name) </label>`);
+        $(ol).append(li);
       });
 
       console.log('fromServer', fromServer);
