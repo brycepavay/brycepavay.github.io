@@ -30,17 +30,16 @@ document.body.addEventListener('submit', async (e) => {
     .then((fromServer) => fromServer.json())
     .then((fromServer) => {
       // You're going to do your lab work in here. Replace this comment.
-      // console.log(fromServer)
-      // if document.querySelector(('.flex-inner')) {
-      //   document.querySelector('.flex-inner'), remove();
-
+      console.log(fromServer)
+      if document.querySelector('.flex-inner')) {
+        document.querySelector('.flex-inner').remove();
+      }
 
       const newArr = range(10);
-      const newArr2 = newArr.map() => {
+      const newArr2 = newArr.map(() => {
         const number = getRandomIntInclusive(0, 243);
         return  fromServer(number);
-      }
-      }
+      });
 
 
       console.log('fromServer', fromServer);
