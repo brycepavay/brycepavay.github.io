@@ -7,6 +7,9 @@ function range(int) {
   }
   return arr;
 }
+function getRandomIntInclusive(min,max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 function sortFunction(a, b, key) {
   if (a[key] < b[key]) {
