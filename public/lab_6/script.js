@@ -41,6 +41,11 @@ document.body.addEventListener('submit', async (e) => {
         return  fromServer(number);
       });
 
+      const reverseList = newArr2.sort((a,b) => sortByKey(a, b, 'name'));
+      const ul = document.createElement('ul');
+      ul.classNmae = 'flex-inner';
+      $('form').prepend(ul);
+
 
       console.log('fromServer', fromServer);
     })
