@@ -42,7 +42,7 @@ document.body.addEventListener('submit', async (e) => {
       });
 
       const reverseList = newArr2.sort((a,b) => sortByKey(a, b, 'name'));
-      const ul = document.createElement('ol');
+      const ol = document.createElement('ol');
       ol.className = 'flex-inner';
       $('form').prepend(ol);
 
