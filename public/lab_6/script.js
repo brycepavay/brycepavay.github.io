@@ -7,14 +7,14 @@ function range(int) {
   }
   return arr;
 }
-function getRandomIntInclusive(min,max) {
+function getRandomIntmin,max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-function sortFunction(a, b, key) {
-  if (a[key] < b[key]) {
+function sortFunction(first, second, key) {
+  if (first[key] < second[key]) {
     return -1;
-  } if (a[key] > b[key]) {
+  } if (first[key] > second[key]) {
     return 1;
   }
   return 0;
@@ -40,11 +40,11 @@ document.body.addEventListener('submit', async (e) => {
 
       const newArr = range(10);
       const newArr2 = newArr.map(() => {
-        const number = getRandomIntInclusive(0, 243);
+        const number = getRandomInt(0, 243);
         return fromServer[number];
       });
 
-      const reverseList = newArr2.sort((a,b) => sortFunction(a, b, 'name'));
+      const reverseList = newArr2.sort((first,second) => sortFunction(first, second, 'name'));
       const ol = document.createElement('ol');
       ol.className = 'flex-inner';
       $('form').prepend(ol);
