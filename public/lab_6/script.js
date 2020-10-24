@@ -7,14 +7,16 @@ function range(int) {
   }
   return arr;
 }
-function getRandomIntmin,max) {
-  return Math.floor(Math.random() * Math.floor(max));
+function getRandomIntInclusive(min,max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function sortFunction(first, second, key) {
-  if (first[key] < second[key]) {
+function sortFunction(a, b, key) {
+  if (a[key] < b[key]) {
     return -1;
-  } if (first[key] > second[key]) {
+  } if (a[key] > b[key]) {
     return 1;
   }
   return 0;
@@ -40,11 +42,11 @@ document.body.addEventListener('submit', async (e) => {
 
       const newArr = range(10);
       const newArr2 = newArr.map(() => {
-        const number = getRandomInt(0, 243);
+        const number = getRandomIntInclusive(0, 243);
         return fromServer[number];
       });
 
-      const reverseList = newArr2.sort((first,second) => sortFunction(first, second, 'name'));
+      const reverseList = newArr2.sort((b,a) => sortFunction(b, a, 'name'));
       const ol = document.createElement('ol');
       ol.className = 'flex-inner';
       $('form').prepend(ol);
