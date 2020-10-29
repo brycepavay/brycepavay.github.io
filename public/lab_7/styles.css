@@ -2,7 +2,9 @@
 body {
   background: #eee;
 }
-
+.h1 {
+  color: #0000CD
+}
 .wrapper {
   display: flex;
   flex-direction: column;
