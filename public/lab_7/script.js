@@ -1,12 +1,53 @@
 function convertRestaurantsToCategories(restaurantList) {
   // process your restaurants here!
+  const x =[]
+  const y = {}
+  for(i = 0;i < restaurantList.length; i+=1){
+      x.push(restaurantList[i].category)
+  }
+    for(i = 0;i < restaurantList.length; i=+1){
+      if(!y[x[i]]) {
+        y[x[i]] = 0;
+      }
+      y[x[i]] += 1;
+    }
+  const a = Object.keys(y).map((category)=>({
+    y:y[category], label:category
+  }));
   return list;
 }
 
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
-  return canvasJSConfigObject;
-} 
+  CanvasJS.addColorSet('customColorSet1', [
+    // add an array of colors here https://canvasjs.com/docs/charts/chart-options/colorset/
+  ]);
+
+  return {
+    animationEnabled: true,
+    colorSet: 'customColorSet1',
+    title: {
+      text: 'Change This Title'
+    },
+    axisX: {
+      interval: 1,
+      labelFontSize: 12
+    },
+    axisY2: {
+      interlacedColor: 'rgba(1,77,101,.2)',
+      gridColor: 'rgba(1,77,101,.1)',
+      title: 'Change This Title',
+      labelFontSize: 12,
+      scaleBreaks: {customBreaks: []} // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
+    },
+    data: [{
+      type: 'bar',
+      name: 'restaurants',
+      axisYType: 'secondary',
+      dataPoints: datapointsFromRestaurantsList
+    }]
+  };
+}
 
 function runThisWithResultsFromServer(jsonFromServer) {
   console.log('jsonFromServer', jsonFromServer);
@@ -14,35 +55,13 @@ function runThisWithResultsFromServer(jsonFromServer) {
   // Process your restaurants list
   // Make a configuration object for your chart
   // Instantiate your chart
-  const chart = new CanvasJS.Chart("chartContainer", {
-    animationEnabled: true,
-    
-    title:{
-      text:"Places to eat out in future"
-    },
-    axisX:{
-      interval: 1
-      labelFontSize: 12
-    },
-    axisY2:{
-      interlacedColor: "rgba(1,77,101,.2)",
-      gridColor: "rgba(1,77,101,.1)",
-      title: "Number of Companies"
-    },
-    data: [{
-      type: "bar",
-      name: "companies",
-      axisYType: "secondary",
-      color: "#014D65",
-      dataPoints: [
- 
-      ]
-    }]
-  });
+  const reorganizedData = convertRestaurantsToCategories(jsonFromServer);
+  const options = makeYourOptionsObject(reorganizedData);
+  const chart = new CanvasJS.Chart('chartContainer', options);
   chart.render();
-
 }
 
+// Leave lines 52-67 alone; do your work in the functions above
 document.body.addEventListener('submit', async (e) => {
   e.preventDefault(); // this stops whatever the browser wanted to do itself.
   const form = $(e.target).serializeArray();
