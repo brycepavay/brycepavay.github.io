@@ -2,8 +2,13 @@
 body {
   background: #eee;
 }
-.h1 {
-  color: #0000CD
+h1 {
+  color:#FF7F50;
+  
+}
+button{
+  background-color: #FF7F50;
+
 }
 .wrapper {
   display: flex;

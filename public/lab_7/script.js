@@ -16,10 +16,27 @@ function convertRestaurantsToCategories(restaurantList) {
   //   label: category
 
   // }));
+  // var categories = [];
+  // var count = 0;
+  // newDataShape.map(function (restaurant) {
+  //   if (!categories.includes(restaurant.category)) {
+  //     count++;
+  //   }
+  //   const div2 = document.createElement('h1');
+  //   const obj = {
+  //     label: restaurantList[0].category,
+  //     y: restaurantList.length
+  //   };
+  //   div2.innerHTML = 'number of categories' + count;
+  //   // `<h2>What we want</h2> <br /> <h4>A category, how many things are in the category</h4><pre><code class="language-javascript">${JSON.stringify(obj)}</pre></code>`;
+
+  //   $('body').append(div2);
+  // }
+  // );
   const newDataShape = restaurantList.reduce((collection, item, i) => {
     // for each item, check if we have a category for that item already
     const findCat = collection.find((findItem) => findItem.label === item.category);
-    
+
     if (!findCat) {
       collection.push({
         label: item.category,
@@ -31,20 +48,23 @@ function convertRestaurantsToCategories(restaurantList) {
     }
     return collection;
   }, []);
-    return restaurantList;
+  return newDataShape;
 }
 
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
-    CanvasJS.addColorSet("customColorSet1", [
-  
+  CanvasJS.addColorSet("customColorSet1", [
+
     "#2F4F4F",
     "#008080",
     "#2E8B57",
     "#3CB371",
-    "#90EE90"                
+    "#90EE90"
   ]);
-
+  const div2 = document.createElement('h1');
+  div2.innerHTML = 'number of categories' + datapointsFromRestaurantsList.length;
+  // $('body').append(div2);
+document.getElementById("chartContainer").appendChild(div2);
   return {
     animationEnabled: true,
     colorSet: 'customColorSet1',
@@ -58,28 +78,31 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
     axisY2: {
       interlacedColor: 'rgba(1,77,101,.2)',
       gridColor: 'rgba(1,77,101,.1)',
-      title: 'Change This Title',
+      title: 'Restaurants By Category',
       labelFontSize: 12,
-         // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
-      scaleBreaks: {customBreaks: [{
-        startValue: 40,
-        endValue: 50,
-        color: "orange",
-        type: "zigzag"
-      },
-      {
-        startValue: 85,
-        endValue: 100,
-        color: "orange",
-        type: "waved"
-      },
-      {
-        startValue: 140,
-        endValue: 175,
-        color: "orange",
-        type: "waved"
-      }]
- 
+      // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
+      scaleBreaks: {
+        customBreaks: [{
+          startValue: 40,
+          endValue: 50,
+          color: "orange",
+          type: "zigzag"
+        },
+        {
+          startValue: 85,
+          endValue: 100,
+          color: "orange",
+          type: "zigzag"
+        },
+        {
+          startValue: 140,
+          endValue: 175,
+          color: "orange",
+          type: "zigzag"
+        }]
+
+      }
+  
     },
     data: [{
       type: 'bar',
@@ -87,8 +110,9 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
       axisYType: 'secondary',
       dataPoints: datapointsFromRestaurantsList
     }]
-  }}
+  }
 }
+
 
 function runThisWithResultsFromServer(jsonFromServer) {
   console.log('jsonFromServer', jsonFromServer);
@@ -97,7 +121,9 @@ function runThisWithResultsFromServer(jsonFromServer) {
   // Make a configuration object for your chart
   // Instantiate your chart
   const reorganizedData = convertRestaurantsToCategories(jsonFromServer);
+  console.log(reorganizedData);
   const options = makeYourOptionsObject(reorganizedData);
+  console.log(options);
   const chart = new CanvasJS.Chart('chartContainer', options);
   chart.render();
 }
