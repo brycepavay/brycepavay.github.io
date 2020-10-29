@@ -37,7 +37,7 @@ document.body.addEventListener('submit', async (e) => {
       animationEnabled: true,
       
       title:{
-        text:"Fortune 500 Companies by Country"
+        text:"Places to eat out in future"
       },
       axisX:{
         interval: 1
