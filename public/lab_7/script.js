@@ -1,26 +1,43 @@
 function convertRestaurantsToCategories(restaurantList) {
   // process your restaurants here!
-  const x =[]
-  const y = {}
-  for(i = 0;i < restaurantList.length; i+=1){
-      x.push(restaurantList[i].category)
-  }
-    for(i = 0;i < restaurantList.length; i=+1){
-      if(!y[x[i]]) {
-        y[x[i]] = 0;
-      }
-      y[x[i]] += 1;
+  // const x =[]
+  // const y = {}
+  // for(i = 0;i < restaurantList.length; i+=1){
+  //     x.push(restaurantList[i].category)
+  // }
+  //   for(i = 0;i < restaurantList.length; i=+1){
+  //     if(!y[x[i]]) {
+  //       y[x[i]] = 0;
+  //     }
+  //     y[x[i]] += 1;
+  //   }
+  // const list = Object.keys(y).map((category)=>({
+  //   y: y[category], 
+  //   label: category
+
+  // }));
+  const newDataShape = restaurantList.reduce((collection, item, i) => {
+    // for each item, check if we have a category for that item already
+    const findCat = collection.find((findItem) => findItem.label === item.category);
+    
+    if (!findCat) {
+      collection.push({
+        label: item.category,
+        y: 1
+      });
+    } else {
+      const position = collection.findIndex(el => el.label === item.category);
+      collection[position].y += 1;
     }
-  const list = Object.keys(y).map((category)=>({
-    y:y[category], label:category
-  }));
+    return collection;
+  }, []);
   return list;
 }
 
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
-    CanvasJS.addColorSet("greenShades",
-  [
+    CanvasJS.addColorSet("customColorSet1", [
+  
     "#2F4F4F",
     "#008080",
     "#2E8B57",
@@ -43,7 +60,26 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
       gridColor: 'rgba(1,77,101,.1)',
       title: 'Change This Title',
       labelFontSize: 12,
-      scaleBreaks: {customBreaks: []} // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
+         // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
+      scaleBreaks: {customBreaks: [{
+        startValue: 40,
+        endValue: 50,
+        color: "orange",
+        type: "zigzag"
+      },
+      {
+        startValue: 85,
+        endValue: 100,
+        color: "orange",
+        type: "waved"
+      },
+      {
+        startValue: 140,
+        endValue: 175,
+        color: "orange",
+        type: "waved"
+      }]
+ 
     },
     data: [{
       type: 'bar',
@@ -51,7 +87,7 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
       axisYType: 'secondary',
       dataPoints: datapointsFromRestaurantsList
     }]
-  };
+  }}
 }
 
 function runThisWithResultsFromServer(jsonFromServer) {
@@ -83,4 +119,4 @@ document.body.addEventListener('submit', async (e) => {
       console.log(err);
     });
 
-});
+})
