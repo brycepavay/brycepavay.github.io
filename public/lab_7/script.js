@@ -1,43 +1,10 @@
 function convertRestaurantsToCategories(restaurantList) {
   // process your restaurants here!
-  // const x =[]
-  // const y = {}
-  // for(i = 0;i < restaurantList.length; i+=1){
-  //     x.push(restaurantList[i].category)
-  // }
-  //   for(i = 0;i < restaurantList.length; i=+1){
-  //     if(!y[x[i]]) {
-  //       y[x[i]] = 0;
-  //     }
-  //     y[x[i]] += 1;
-  //   }
-  // const list = Object.keys(y).map((category)=>({
-  //   y: y[category], 
-  //   label: category
-
-  // }));
-  // var categories = [];
-  // var count = 0;
-  // newDataShape.map(function (restaurant) {
-  //   if (!categories.includes(restaurant.category)) {
-  //     count++;
-  //   }
-  //   const div2 = document.createElement('h1');
-  //   const obj = {
-  //     label: restaurantList[0].category,
-  //     y: restaurantList.length
-  //   };
-  //   div2.innerHTML = 'number of categories' + count;
-  //   // `<h2>What we want</h2> <br /> <h4>A category, how many things are in the category</h4><pre><code class="language-javascript">${JSON.stringify(obj)}</pre></code>`;
-
-  //   $('body').append(div2);
-  // }
-  // );
   const newDataShape = restaurantList.reduce((collection, item, i) => {
     // for each item, check if we have a category for that item already
-    const findCat = collection.find((findItem) => findItem.label === item.category);
+    const findCategory = collection.find((findItem) => findItem.label === item.category);
 
-    if (!findCat) {
+    if (!findCategory) {
       collection.push({
         label: item.category,
         y: 1
@@ -64,7 +31,7 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
   const div2 = document.createElement('h1');
   div2.innerHTML = 'number of categories' + datapointsFromRestaurantsList.length;
   // $('body').append(div2);
-document.getElementById("chartContainer").appendChild(div2);
+  document.getElementById("chartContainer").appendChild(div2);
   return {
     animationEnabled: true,
     colorSet: 'customColorSet1',
@@ -73,7 +40,7 @@ document.getElementById("chartContainer").appendChild(div2);
     },
     axisX: {
       interval: 1,
-      labelFontSize: 12
+      labelFontSize: 12,
     },
     axisY2: {
       interlacedColor: 'rgba(1,77,101,.2)',
@@ -102,7 +69,7 @@ document.getElementById("chartContainer").appendChild(div2);
         }]
 
       }
-  
+
     },
     data: [{
       type: 'bar',
@@ -112,7 +79,6 @@ document.getElementById("chartContainer").appendChild(div2);
     }]
   }
 }
-
 
 function runThisWithResultsFromServer(jsonFromServer) {
   console.log('jsonFromServer', jsonFromServer);

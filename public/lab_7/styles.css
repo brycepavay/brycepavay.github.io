@@ -4,10 +4,6 @@ body {
 }
 h1 {
   color:#FF7F50;
-  
-}
-button{
-  background-color: #FF7F50;
 
 }
 .wrapper {
@@ -53,7 +49,7 @@ button{
 }
 
 .flex-outer button {
-  background-color: darkolivegreen;
+  background-color: #FF7F50;
   color: white;
   padding: 6px 12px;
   border: none;
@@ -91,7 +87,7 @@ h1 {
   margin: 20px 50px;
   padding: 0 20px;
   min-height: 75px;
-  background-color: darkolivegreen;
+  background-color: #FF7F50;
   color: white;
   display: flex;
   
