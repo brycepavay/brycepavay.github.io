@@ -28,10 +28,9 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
     "#3CB371",
     "#90EE90"
   ]);
-  const div2 = document.createElement('h1');
-  div2.innerHTML = 'number of categories' + datapointsFromRestaurantsList.length;
-  // $('body').append(div2);
-  document.getElementById("chartContainer").appendChild(div2);
+  const countingCategories = document.createElement('h1');
+  countingCategories.innerHTML = 'number of categories' + datapointsFromRestaurantsList.length;
+  document.getElementById("chartContainer").appendChild(countingCategories);
   return {
     animationEnabled: true,
     colorSet: 'customColorSet1',
